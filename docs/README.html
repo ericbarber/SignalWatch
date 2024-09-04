@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1 id="design-document-outline">Design Document Outline</h1>
+    <h2 id="stakeholder-value-map">Stakeholder Value Map</h2>
+    <figure>
+    <img src="./diagrams/signal_watch_value_map_diagram.png" alt="Stakeholder Value Map" /><figcaption>Stakeholder Value Map</figcaption>
+    </figure>
+    <h2 id="process-flow-chart">Process Flow Chart</h2>
+    <figure>
+    <img src="./diagrams/signal_watch_diagram.png" alt="1.0 Process Flow Chart" /><figcaption>1.0 Process Flow Chart</figcaption>
+    </figure>
+    <h2 id="data_source">1. Data_Source</h2>
+    <ul>
+    <li>Description: The source table from which raw data is collected. This data might reside in a Databricks Delta table or another data store.</li>
+    <li>Responsibilities:
+    <ul>
+    <li>Store raw event data.</li>
+    <li>Provide a reliable source for data retrieval.</li>
+    </ul></li>
+    <li>Interactions:
+    <ul>
+    <li>Queried by the Preprocess_Operation service to fetch relevant data.</li>
+    </ul></li>
+    </ul>
+    <h2 id="preprocess_operation">2. Preprocess_Operation</h2>
+    <ul>
+    <li>Description: This operation queries the source data, applies necessary transformations, and converts the data into a feature format suitable for control analysis.</li>
+    <li>Responsibilities:
+    <ul>
+    <li>Extract and transform data.</li>
+    <li>Format data into a structured schema required for control analysis.</li>
+    </ul></li>
+    <li>Interactions:
+    <ul>
+    <li>Fetches data from Data_Source.</li>
+    <li>Passes preprocessed data to Control_Analysis.</li>
+    </ul></li>
+    </ul>
+    <h2 id="control_analysis">3. Control_Analysis</h2>
+    <ul>
+    <li>Description: This service performs the actual control analysis on the preprocessed data, such as generating control charts.</li>
+    <li>Responsibilities:
+    <ul>
+    <li>Analyze feature data using appropriate control chart methodologies.</li>
+    <li>Identify any out-of-control processes or significant deviations.</li>
+    </ul></li>
+    <li>Interactions:
+    <ul>
+    <li>Receives data from Preprocess_Operation.</li>
+    <li>Outputs results to Control_Runs and Control_Signals.</li>
+    </ul></li>
+    </ul>
+    <h2 id="control_runs">4. Control_Runs</h2>
+    <ul>
+    <li>Description: Stores the results of each control analysis run, including calculated metrics and control chart data.</li>
+    <li>Responsibilities:
+    <ul>
+    <li>Maintain a history of all control analysis runs.</li>
+    <li>Provide a record of analysis outcomes for audit and review.</li>
+    </ul></li>
+    <li>Interactions:
+    <ul>
+    <li>Populated by Control_Analysis.</li>
+    <li>Referenced by Control_Signals for signal generation.</li>
+    </ul></li>
+    </ul>
+    <h2 id="control_signals">5. Control_Signals</h2>
+    <ul>
+    <li>Description: Handles the detection of signals or alerts based on control analysis results, triggering any necessary notifications.</li>
+    <li>Responsibilities:
+    <ul>
+    <li>Identify signals indicating out-of-control processes.</li>
+    <li>Log signals and forward them to the notification system.</li>
+    </ul></li>
+    <li>Interactions:
+    <ul>
+    <li>Processes results from Control_Runs.</li>
+    <li>Triggers Notification_System when signals are detected.</li>
+    </ul></li>
+    </ul>
+    <h2 id="notification_system">6. Notification_System</h2>
+    <ul>
+    <li>Description: This service is responsible for sending out notifications (e.g., emails) when signals are generated from control analysis.</li>
+    <li>Responsibilities:
+    <ul>
+    <li>Send email alerts with HTML content.</li>
+    <li>Manage notification templates and delivery mechanisms.</li>
+    </ul></li>
+    <li>Interactions:
+    <ul>
+    <li>Activated by Control_Signals.</li>
+    <li>Sends notifications to stakeholders.</li>
+    </ul></li>
+    </ul>
+    <h2 id="explanation-of-the-diagram">Explanation of the Diagram</h2>
+    <ul>
+    <li>Data Pipeline Cluster:
+    <ul>
+    <li>Data_Source (S3): Represents the raw data storage.</li>
+    <li>Preprocess_Operation (Spark): Symbolizes the ETL process.</li>
+    <li>Control_Analysis (Spark): Represents the control analysis logic.</li>
+    <li>Control_Runs (Postgresql): Stores the results of each analysis run.</li>
+    <li>Control_Signals (Postgresql): Manages the signals generated from the analysis.</li>
+    </ul></li>
+    <li>Notification System Cluster:
+    <ul>
+    <li>Email Service (Django): Depicts the notification system sending out alerts.</li>
+    <li>Users: Represents the stakeholders receiving the notifications.</li>
+    </ul></li>
+    </ul>
+    <h2 id="deliverables">Deliverables</h2>
+    <ul>
+    <li>Design Document: A detailed document outlining each service’s responsibilities, interactions, and how they work together within the framework.</li>
+    <li>Diagrams Script: The Python script using the diagrams package to visualize the architecture.</li>
+    <li>Generated Diagram: A visual diagram (e.g., PNG or PDF) created using the diagrams script, providing a clear overview of the architecture.</li>
+    </ul>
+    <p>These deliverables will guide the development and deployment of the control analysis system, ensuring each component is well-integrated and the entire process is streamlined.</p>
+</body>
+</html>

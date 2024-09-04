@@ -1,0 +1,11 @@
+Name,Description,Precision,Tolerance_C_Min,Tolerance_C_Max,Tolerance_F_Min,Tolerance_F_Max
+Thermostatic Control Systems,Used in HVAC systems for residential and commercial buildings.,Low,1.0,3.0,1.8,5.4
+PID Control Systems,"Used in industrial processes, laboratory equipment, and precision temperature control systems.",Moderate,0.1,1.0,0.18,1.8
+On/Off Control Systems,Used in basic heating or cooling systems where precise control is not critical.,Low,2.0,5.0,3.6,9.0
+Programmable Logic Controllers (PLC),"Used in automated industrial systems, including manufacturing and process control.",Moderate,0.1,2.0,0.18,3.6
+Cryogenic Control Systems,"Used in scientific research, superconducting equipment, and space applications.",High,0.01,0.1,0.018,0.18
+Thermal Management Systems in Electronics,"Used in electronic devices and systems (e.g., CPUs, GPUs, power supplies).",Low,1.0,5.0,1.8,9.0
+Environmental Chambers,Used for testing materials and products under controlled temperature and humidity conditions.,Moderate,0.5,2.0,0.9,3.6
+Medical Temperature Control Systems,"Used in medical devices (e.g., incubators, blood warmers, storage of biological samples).",High,0.1,0.5,0.18,0.9
+Refrigeration and Cooling Systems,"Used in food storage, pharmaceuticals, and air conditioning.",Low,1.0,3.0,1.8,5.4
+Smart Home Temperature Control Systems,Used in smart thermostats and home automation.,Moderate,0.5,2.0,0.9,3.6
