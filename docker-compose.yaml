@@ -1,0 +1,18 @@
+services:
+  delta-lake:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: delta_signalwatch
+    container_name: delta-signalwatch
+    environment:
+      - DELTA_SPARK_VERSION=3.1.0
+      - DELTALAKE_VERSION=0.16.4
+      - JUPYTERLAB_VERSION=4.0.7
+      - PANDAS_VERSION=2.2.2
+      - MATPLOTLIB_VERSION=3.9.2
+      - ROAPI_VERSION=0.11.1
+    ports:
+      - "8888:8888"  # Port for JupyterLab
+    # volumes:
+    #   - ./workdir:/opt/spark/work-dir

@@ -1,0 +1,20 @@
+[package]
+name = "quickstart"
+version = "0.1.2"
+rust-version = "1.73"
+authors = ["Denny Lee <denny.g.lee@gmail.com>"]
+license = "Apache-2.0"
+keywords = ["deltalake", "delta", "datalake", "deltars"]
+description = "Quick Start Delta Lake Rust examples"
+edition = "2021"
+
+[dependencies]
+datafusion = "14.0.0"
+deltalake = { version = "0.5.0", features = ["datafusion-ext"] }
+tokio = "1.23.0"
+
+[[example]]
+name = "read_delta_table"
+
+[[example]]
+name = "read_delta_datafusion"
